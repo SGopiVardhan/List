@@ -1,0 +1,230 @@
+	             TOP 20 FUNCTIONS IN PANDAS
+
+
+1.Reading a file
+
+  df=pd.read_csv("file location")
+
+2.df.head()
+  df.head(10)
+  df.tail()
+  df.tail(10)
+3.get the complete information about all the columns in table
+   
+  df.info()
+
+4.to know shape and size of data set
+  
+  df.shape
+  df.size
+
+5. choose n number of random sample record from data set
+   
+   df.sample(n=10)
+
+6.get the standard mathematical analysis of each column
+
+  df.describe()
+  df.describe().T
+
+7.Find number of distinct values
+
+  df.unique()
+
+8.Find any variable or column with missing value
+
+  df.isna()
+  df.isna.any()
+  df.isnull()
+  df.notnull()
+9.this function show the all rows and columns with boolean data present in the cell
+  True means null value
+  False means Not a null value
+   df.isna()
+   df.isna.any() 
+   df.isnull()
+   df.notnull() 
+   df[df.isnull().all(axis=1)] # check all values in each row in all columns is Nan(null value)
+ 
+10.df.isnull.sum() # find no.of null values in each column
+
+11.get the names of the column
+  
+   df.columns
+12. get the nlargest and nsmallest from column
+    
+    df.nsmallest(10,'mathscore")
+    df.nlargest(10,"math score")
+
+
+13.loc & iloc
+  
+  df.loc[1] # 1 is record number
+  df.loc[0:5]
+  df.loc[1:5,"math score"]
+  df.loc[1:5,["math score","reading score"]]
+  df.iloc[1:5]
+  df.iloc[1:5,1]
+  df.iloc[0:5,0:5] 
+14.slice the data
+
+   df[1:6]
+
+
+15.groupby() function
+    df.groupby("State_name")["Male"].sum()
+    df.groupby("State_name")["Female"].sum()
+
+16.
+    df.sort_values(by="math score",ascending=False)
+    df.sort_values(["math score","reading score"])
+
+17.query in dataframe
+  
+   df.query("math score>50")
+18.Get uniue values from column
+   
+   df["column name"].unique()
+
+   df['math score'].unique
+19.If you want to know how many space ,columns are taking into your computer then memory_usage
+
+    df.memory_usage()
+20.
+
+   df.to_csv("file location")
+   df.to_excel("file locatin.csv/xlsx")
+
+21.How do you rename columns in a DataFrame?
+
+
+  df.rename(columns={'old_name': 'new_name'}, inplace=True)
+
+22.How do you drop columns or rows from a DataFrame?
+
+
+df.drop(columns=['column_name'], inplace=True)  # Drop columns
+df.drop(index=[0, 1, 2], inplace=True)  # Drop r
+
+23.How do you filter rows based on a condition?
+
+
+ filtered_df = df[df['column_name'] > threshold_value]
+
+ df[df["math score"]<23]
+ 
+24.How do you select specific columns from a DataFrame?
+
+
+  df[['column1', 'column2']]
+
+  df["column1"] 
+
+25.COMBINE TWO DATAFRAME
+  
+   df.concat([df1,df2...])
+
+26.df1.set_index(["math score","reading score"])
+
+27.result = pd.concat([df1, df2], axis=0)
+
+28.How do you efficiently iterate over rows in a DataFrame?
+    for index,row in df1.iterrows():
+    print(index,row) 
+    print(index,row["col1]) # we can also specity the column name in row
+
+
+29.How can you visualize data using Pandas?
+    
+  df1.plot()
+  import pandas as pd
+  import matplotlib.pyplot as plt
+
+ # Create a sample DataFrame
+ data = pd.DataFrame({'Year': [2010, 2015, 2020, 2025],
+                     'Sales': [100, 150, 200, 250]})
+
+ # Create a line plot
+ data.plot(kind='bar', x='Year', y='Sales', title='Sales Over Time')
+
+# Display the plot
+#plt.show()
+kind: Specifies the type of plot you want to create, such as 'line', 'bar', 'hist', 'scatter', 'box', and more.
+
+x and y: These parameters allow you to specify which columns from the DataFrame should be used as the x and y axes data for the plot. For example, x='column_name' and y='another_column'.
+
+title: Sets the title of the plot.
+
+xlabel and ylabel: Set the labels for the x and y axes.
+
+legend: Controls whether to display a legend (useful when plotting multiple series).
+
+color: Allows you to specify the color of the plot.
+
+figsize: Sets the size of the plot figure.
+
+Here's a simple example of using the plot() method:
+
+python
+Copy code
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Create a sample DataFrame
+data = pd.DataFrame({'Year': [2010, 2015, 2020, 2025],
+                     'Sales': [100, 150, 200, 250]})
+
+# Create a line plot
+data.plot(kind='line', x='Year', y='Sales', title='Sales Over Time')
+
+# Display the plot
+plt.show()
+In this example, plot() is used to create a line plot of sales data over time. The kind='line' argument specifies the type of plot. You can change 'line' to other values like 'bar', 'hist', 'scatter', etc., to create different types of plots.
+
+Keep in mind that while pandas' plot() method provides a quick and convenient way to create basic plots, you can customize and enhance your plots further using matplotlib functions if needed. Additionally, you may need to use plt.show() to display the plot when working in Jupyter Notebook or other interactive environments.
+
+30.isin()
+   df[df["Weather"].isin(["Fog"])]
+   df[df["Weather"].isin(['Snow',"Fog"])]	
+ l=[66,47]
+ df[df["Buddhists"].isin(l)]
+ 
+ df[df['Male'].isin(["Female"])]
+
+31.df.value_counts()#
+   import pandas as pd
+
+data = {'Category': ['A', 'B', 'A', 'C', 'B', 'A', 'A']}
+df = pd.DataFrame(data)
+
+output:
+A    4
+B    2
+C    1
+Name: Category, dtype: int64
+
+# Count the occurrences of each unique value in the 'Category' column
+value_counts = df['Category'].value_counts()
+print(value_counts)
+
+32.df.count()# count the non_null values of all  columns
+   df["Jains"].count() # count the non_null values of jains columns 
+
+33.df.isnull().sum() or df.isna() # both are same fucntionality
+   df.notnull() 
+
+34.df.duplicated()
+   df[df[duplicated()]
+
+35.df.drop_duplicates()
+   df.drop_duplicates() inplace=True 
+
+36. df["Population"].nlargest() #gives 5 largest records from numerical column
+    df["Population"].nsmallest() #gives 5 smallest records from n numerical column 
+
+37. df[df["Type"].isin(["Dramas"])]
+    df[df["Country"].isin(["United States"])]
+    df[df["Weather"].isin(["Fog"])]
+    df[df["Weather"].str.contains("Snow")]
+    df[df["Weather"].str.contains("Fog")] 
+    
